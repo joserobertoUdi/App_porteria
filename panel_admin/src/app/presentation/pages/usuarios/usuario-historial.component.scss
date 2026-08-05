@@ -1,0 +1,110 @@
+.uh__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.uh__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--udi-rojo-oscuro), var(--udi-rojo));
+  color: #fff;
+  font-weight: 800;
+}
+
+.uh__datos {
+  min-width: 0;
+}
+
+.uh__titulo {
+  margin: 0 0 2px;
+  color: #333;
+  font-size: 1.1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.uh__carnet {
+  margin: 0;
+  color: #777;
+  font-size: 0.85rem;
+}
+
+.uh__seccion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0 10px;
+  color: var(--udi-rojo);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.uh__contador {
+  padding: 2px 9px;
+  border-radius: 12px;
+  background: rgba(213, 0, 0, 0.12);
+  color: var(--udi-rojo);
+  font-size: 0.75rem;
+}
+
+.uh__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.uh__item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 14px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.uh__item-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.uh__estado {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.uh__estado--activo {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.uh__estado--completado {
+  background: #eeeeee;
+  color: #616161;
+}
+
+.uh__fecha {
+  color: #333;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.uh__detalle {
+  color: #777;
+  font-size: 0.8rem;
+}

@@ -1,0 +1,64 @@
+@if (cargando()) {
+  <udi-loading mensaje="Cargando historial…" />
+} @else if (historial(); as h) {
+  <header class="uh__cabecera">
+    <span class="uh__avatar">{{ inicial(h.nombreCompleto) }}</span>
+    <div class="uh__datos">
+      <h3 class="uh__titulo">{{ h.nombreCompleto }}</h3>
+      <p class="uh__carnet">C.I. {{ h.documentoIdentidad }}</p>
+    </div>
+  </header>
+
+  @if (h.porteria.length === 0 && h.parqueo.length === 0) {
+    <udi-empty mensaje="El usuario no tiene visitas registradas" />
+  } @else {
+    @if (h.porteria.length > 0) {
+      <h4 class="uh__seccion">🚪 Portería <span class="uh__contador">{{ h.porteria.length }}</span></h4>
+      <ul class="uh__lista">
+        @for (r of h.porteria; track r.idRegistro) {
+          <li class="uh__item">
+            <div class="uh__item-titulo">
+              <span
+                class="uh__estado"
+                [class.uh__estado--activo]="esActivo(r.fechaSalida)"
+                [class.uh__estado--completado]="!esActivo(r.fechaSalida)"
+              >
+                {{ esActivo(r.fechaSalida) ? 'Activo' : 'Completado' }}
+              </span>
+              <span class="uh__fecha">Entrada {{ fecha(r.fechaEntrada) }}</span>
+            </div>
+            <span class="uh__detalle">Salida: {{ fecha(r.fechaSalida) }}</span>
+            @if (r.motivoVisita) {
+              <span class="uh__detalle">Motivo: {{ r.motivoVisita }}</span>
+            }
+            @if (r.areaDestino) {
+              <span class="uh__detalle">Área: {{ r.areaDestino }}</span>
+            }
+          </li>
+        }
+      </ul>
+    }
+
+    @if (h.parqueo.length > 0) {
+      <h4 class="uh__seccion">🚗 Parqueo <span class="uh__contador">{{ h.parqueo.length }}</span></h4>
+      <ul class="uh__lista">
+        @for (r of h.parqueo; track r.idRegistro) {
+          <li class="uh__item">
+            <div class="uh__item-titulo">
+              <span
+                class="uh__estado"
+                [class.uh__estado--activo]="esActivo(r.fechaSalida)"
+                [class.uh__estado--completado]="!esActivo(r.fechaSalida)"
+              >
+                {{ esActivo(r.fechaSalida) ? 'Activo' : 'Completado' }}
+              </span>
+              <span class="uh__fecha">{{ r.matricula }}</span>
+            </div>
+            <span class="uh__detalle">Ingreso: {{ fecha(r.fechaIngreso) }}</span>
+            <span class="uh__detalle">Salida: {{ fecha(r.fechaSalida) }}</span>
+          </li>
+        }
+      </ul>
+    }
+  }
+}

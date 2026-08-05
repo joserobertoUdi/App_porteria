@@ -1,0 +1,24 @@
+/* ===== Identidad visual UDI (replica de lib/core/theme/app_theme.dart) ===== */
+:root {
+  --udi-rojo: #d50000;
+  --udi-rojo-oscuro: #a30000;
+  --udi-blanco: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+  background: #f5f5f5;
+  -webkit-font-smoothing: antialiased;
+}
