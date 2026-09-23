@@ -1,0 +1,41 @@
+<div class="layout">
+  <header class="layout__barra">
+    <div class="layout__barra-inner">
+      <div class="layout__marca">
+        <img src="assets/branding/logo-udi-blanco.png" alt="UDI" />
+        <span class="layout__marca-sub">Admin</span>
+      </div>
+
+      <nav class="layout__nav" aria-label="Principal">
+        <a
+          routerLink="/historial"
+          routerLinkActive="layout__enlace--activo"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="layout__enlace"
+        >Historial</a>
+        <a
+          routerLink="/usuarios"
+          routerLinkActive="layout__enlace--activo"
+          class="layout__enlace"
+        >Usuarios</a>
+        <a
+          routerLink="/auditoria"
+          routerLinkActive="layout__enlace--activo"
+          class="layout__enlace"
+        >Auditoría</a>
+      </nav>
+
+      <div class="layout__usuario">
+        <span class="layout__avatar" aria-hidden="true">{{ inicial() }}</span>
+        <span class="layout__nombre">{{ sesion()?.nombreCompleto }}</span>
+        <button type="button" class="layout__salir" (click)="cerrarSesion()">Salir</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout__contenido">
+    <router-outlet />
+  </main>
+</div>
+
+<udi-toast />

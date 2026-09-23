@@ -1,0 +1,63 @@
+<section class="auditoria">
+  <div class="auditoria__encabezado">
+    <div>
+      <h2 class="auditoria__titulo">Auditoría de guardias</h2>
+      <p class="auditoria__subtitulo">
+        Aprobaciones por operador y día (portería y parqueo)
+      </p>
+    </div>
+    <button
+      type="button"
+      class="auditoria__recargar"
+      (click)="recargar()"
+      [disabled]="cargando()"
+    >
+      ↻ Recargar
+    </button>
+  </div>
+
+  <input
+    type="search"
+    class="auditoria__busqueda"
+    placeholder="Buscar por nombre o carnet…"
+    aria-label="Buscar guardias"
+    (input)="buscar($any($event.target).value)"
+  />
+
+  @if (cargando()) {
+    <udi-loading mensaje="Cargando guardias…" />
+  } @else if (guardias().length === 0) {
+    <udi-empty mensaje="No se encontraron guardias" />
+  } @else {
+    <ul class="auditoria__lista">
+      @for (guardia of guardias(); track guardia.id) {
+        <li class="auditoria__item" (click)="abrir(guardia)">
+          <span class="auditoria__avatar">{{ inicial(guardia.nombreCompleto) }}</span>
+
+          <div class="auditoria__datos">
+            <span class="auditoria__nombre">{{ guardia.nombreCompleto }}</span>
+            <span class="auditoria__carnet">
+              C.I. {{ guardia.documentoIdentidad }} · {{ guardia.rol }}
+            </span>
+          </div>
+
+          <span class="auditoria__ver">Ver auditoría ›</span>
+        </li>
+      }
+    </ul>
+  }
+</section>
+
+@if (seleccionado(); as guardia) {
+  <div class="auditoria__overlay" (click)="cerrar()">
+    <div
+      class="auditoria__dialogo"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Auditoría del guardia"
+      (click)="$event.stopPropagation()"
+    >
+      <app-auditoria-guardia [guardia]="guardia" (volver)="cerrar()" />
+    </div>
+  </div>
+}

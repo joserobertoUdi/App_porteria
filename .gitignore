@@ -1,0 +1,52 @@
+# IDE y entorno local
+.vscode/
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Dependencias y artefactos de compilación
+**/node_modules/
+**/dist/
+**/build/
+**/bin/
+**/obj/
+**/out/
+**/.dart_tool/
+**/.pub-cache/
+**/.idea/
+**/.gradle/
+**/coverage/
+**/.nyc_output/
+**/*.log
+**/*.tmp
+**/*.temp
+
+# Archivos locales de entorno
+.env
+.env.*
+!.env.example
+
+# Soporte nativo / librerías locales
+**/android/key.properties
+**/android/local.properties
+**/ios/Pods/
+**/ios/Flutter/Generated.xcconfig
+**/macos/Flutter/Generated.xcconfig
+**/windows/flutter/ephemeral/
+**/linux/flutter/ephemeral/
+
+# Archivos de ejecución locales
+*.pdb
+*.db-shm
+*.db-wal
+
+# No ignorar documentación ni backups del proyecto
+!DESPLIEGUE.md
+!GUIA_INSTALACION_Y_EJECUCION.md
+!DOCUMENTACION_BACKEND.md
+!DOCUMENTACION_FRONTEND.md
+!ROADMAP.md
+!UniversidadDB.bak

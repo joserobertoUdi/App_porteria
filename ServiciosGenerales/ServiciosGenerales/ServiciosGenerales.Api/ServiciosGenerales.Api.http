@@ -1,0 +1,116 @@
+@ServiciosGenerales.Api_HostAddress = http://localhost:5169
+@token = PONER_TOKEN_AQUI
+
+### Login (público)
+# @name login
+POST {{ServiciosGenerales.Api_HostAddress}}/api/Auth/login
+Content-Type: application/json
+
+{
+  "documentoIdentidad": "admin",
+  "password": "admin123"
+}
+
+### Buscar usuario por documento (requiere token)
+GET {{ServiciosGenerales.Api_HostAddress}}/api/Usuario/buscar/12345678
+Authorization: Bearer {{token}}
+
+### Sugerir usuarios (requiere token)
+GET {{ServiciosGenerales.Api_HostAddress}}/api/Usuario/sugerir/est
+Authorization: Bearer {{token}}
+
+### Portería: entrada completa (busca o crea usuario sin credenciales)
+POST {{ServiciosGenerales.Api_HostAddress}}/api/Porteria/entrada-completa
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "documentoIdentidad": "123456789",
+  "nombreCompleto": "María Pérez",
+  "tipoUsuarioId": 3,
+  "puertaEntrada": "Principal",
+  "motivoVisita": "Trámites",
+  "areaDestino": "Rectoría"
+}
+
+### Portería: visitas activas
+GET {{ServiciosGenerales.Api_HostAddress}}/api/Porteria/activos
+Authorization: Bearer {{token}}
+
+### Parqueo: entrada completa
+POST {{ServiciosGenerales.Api_HostAddress}}/api/Parqueo/entrada-completa
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "documentoIdentidad": "123456789",
+  "nombreCompleto": "María Pérez",
+  "tipoUsuarioId": "3",
+  "matricula": "ABC123",
+  "marca": "Toyota",
+  "modelo": "Corolla",
+  "color": "Rojo",
+  "puertaAcceso": "Principal"
+}
+
+### Parqueo: activos
+GET {{ServiciosGenerales.Api_HostAddress}}/api/Parqueo/activos
+Authorization: Bearer {{token}}
+
+### Admin: listar usuarios
+GET {{ServiciosGenerales.Api_HostAddress}}/api/Admin/usuarios
+Authorization: Bearer {{token}}
+
+### Admin: crear usuario
+POST {{ServiciosGenerales.Api_HostAddress}}/api/Admin/usuarios
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombreCompleto": "Nuevo Usuario",
+  "documentoIdentidad": "12345678",
+  "password": "clave123",
+  "tipoUsuarioId": 3,
+  "rolId": 3
+}
+
+### Admin: actualizar usuario (nombre, tipo, rol y estado)
+PUT {{ServiciosGenerales.Api_HostAddress}}/api/Admin/usuarios/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombreCompleto": "Administrador",
+  "tipoUsuarioId": 1,
+  "rolId": 1,
+  "estado": true
+}
+
+### Admin: restablecer contraseña (y desbloquear cuenta)
+POST {{ServiciosGenerales.Api_HostAddress}}/api/Admin/usuarios/1/password
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nuevaPassword": "clave123"
+}
+
+### Admin: historial de un usuario (portería y parqueo)
+GET {{ServiciosGenerales.Api_HostAddress}}/api/Admin/usuarios/4/historial
+Authorization: Bearer {{token}}
+
+### Admin: historial portería
+GET {{ServiciosGenerales.Api_HostAddress}}/api/Admin/porteria/historial
+Authorization: Bearer {{token}}
+
+### Admin: historial parqueo
+GET {{ServiciosGenerales.Api_HostAddress}}/api/Admin/parqueo/historial
+Authorization: Bearer {{token}}
+
+### Admin: estadísticas por tipo de persona (mes/año por defecto: actual)
+GET {{ServiciosGenerales.Api_HostAddress}}/api/Admin/estadisticas/tipos?anio=2026&mes=7
+Authorization: Bearer {{token}}
+
+### Admin: historial de un tipo de persona en un mes (1=Estudiante, 2=Trabajador, 3=Visitante)
+GET {{ServiciosGenerales.Api_HostAddress}}/api/Admin/estadisticas/tipos/2/historial?anio=2026&mes=7
+Authorization: Bearer {{token}}

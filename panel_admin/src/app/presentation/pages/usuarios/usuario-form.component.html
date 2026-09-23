@@ -1,0 +1,76 @@
+<form class="usuario-form" [formGroup]="formulario" (ngSubmit)="guardar()" novalidate>
+  <label class="usuario-form__campo">
+    <span class="usuario-form__etiqueta">Nombre completo</span>
+    <input
+      class="usuario-form__input"
+      formControlName="nombreCompleto"
+      type="text"
+      placeholder="Nombre y apellidos"
+    />
+    @if (formulario.controls.nombreCompleto.touched && formulario.controls.nombreCompleto.invalid) {
+      <span class="usuario-form__error">El nombre es obligatorio (mín. 2 caracteres).</span>
+    }
+  </label>
+
+  @if (modo() === 'crear') {
+    <label class="usuario-form__campo">
+      <span class="usuario-form__etiqueta">Carnet de identidad</span>
+      <input
+        class="usuario-form__input"
+        formControlName="documentoIdentidad"
+        type="text"
+        placeholder="Documento de identidad"
+      />
+      @if (formulario.controls.documentoIdentidad.touched && formulario.controls.documentoIdentidad.invalid) {
+        <span class="usuario-form__error">El carnet es obligatorio (mín. 3 caracteres).</span>
+      }
+    </label>
+  }
+
+  <div class="usuario-form__fila">
+    <label class="usuario-form__campo">
+      <span class="usuario-form__etiqueta">Tipo de usuario</span>
+      <select class="usuario-form__select" formControlName="tipoUsuarioId">
+        @for (tipo of tipos; track tipo.id) {
+          <option [ngValue]="tipo.id">{{ tipo.nombre }}</option>
+        }
+      </select>
+    </label>
+
+    <label class="usuario-form__campo">
+      <span class="usuario-form__etiqueta">Rol de sistema</span>
+      <select class="usuario-form__select" formControlName="rolId">
+        @for (rol of roles; track rol.id) {
+          <option [ngValue]="rol.id">{{ rol.nombre }}</option>
+        }
+      </select>
+    </label>
+  </div>
+
+  @if (modo() === 'crear') {
+    <label class="usuario-form__campo">
+      <span class="usuario-form__etiqueta">Contraseña</span>
+      <input
+        class="usuario-form__input"
+        formControlName="password"
+        type="password"
+        autocomplete="new-password"
+        placeholder="Mínimo 6 caracteres"
+      />
+      @if (formulario.controls.password.touched && formulario.controls.password.invalid) {
+        <span class="usuario-form__error">La contraseña es obligatoria (mín. 6 caracteres).</span>
+      }
+    </label>
+  }
+
+  @if (modo() === 'editar') {
+    <label class="usuario-form__switch">
+      <input type="checkbox" formControlName="estado" />
+      <span>Cuenta activa</span>
+    </label>
+  }
+
+  <button class="usuario-form__boton" type="submit" [disabled]="guardando()">
+    {{ guardando() ? 'Guardando…' : modo() === 'crear' ? 'Crear usuario' : 'Guardar cambios' }}
+  </button>
+</form>

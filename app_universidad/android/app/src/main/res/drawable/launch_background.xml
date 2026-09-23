@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Pantalla que Android muestra mientras arranca el motor de Flutter.
+
+    Se apoya en @mipmap/ic_launcher, que genera flutter_launcher_icons en todas
+    las densidades a partir de assets/branding/logo-udi-color.png. Así el logo
+    se mantiene en un único sitio: al cambiarlo y regenerar, esta pantalla se
+    actualiza sola.
+
+    En Android 12 y superiores el sistema ignora este archivo y compone su
+    propia pantalla de inicio con el icono de la aplicación — que es el mismo,
+    de modo que el resultado coincide.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:color/white" />
+
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/ic_launcher" />
+    </item>
+</layer-list>

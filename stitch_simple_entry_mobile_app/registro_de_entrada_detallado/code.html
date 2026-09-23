@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registro Simple</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed-dim": "#c1c6d7",
+                      "on-error-container": "#93000a",
+                      "surface-container-highest": "#e0e3e5",
+                      "on-primary-fixed": "#410004",
+                      "secondary-container": "#dde2f3",
+                      "on-tertiary-container": "#f4ffff",
+                      "tertiary-container": "#008188",
+                      "background": "#f7fafc",
+                      "surface-dim": "#d7dadc",
+                      "surface-bright": "#f7fafc",
+                      "inverse-primary": "#ffb3ad",
+                      "surface-container": "#ebeef0",
+                      "error": "#ba1a1a",
+                      "inverse-surface": "#2d3133",
+                      "on-secondary-fixed-variant": "#414754",
+                      "error-container": "#ffdad6",
+                      "on-surface": "#181c1e",
+                      "on-secondary": "#ffffff",
+                      "outline": "#8f6f6d",
+                      "on-tertiary-fixed": "#002022",
+                      "primary-fixed-dim": "#ffb3ad",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#004f53",
+                      "on-secondary-fixed": "#161c27",
+                      "tertiary-fixed": "#8cf2fa",
+                      "surface-container-low": "#f1f4f6",
+                      "on-background": "#181c1e",
+                      "on-primary-container": "#fffbff",
+                      "surface-tint": "#b91c24",
+                      "surface": "#f7fafc",
+                      "secondary": "#585e6c",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#5b403e",
+                      "surface-variant": "#e0e3e5",
+                      "tertiary": "#00666c",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#e5e9eb",
+                      "on-secondary-container": "#5e6473",
+                      "secondary-fixed": "#dde2f3",
+                      "on-primary": "#ffffff",
+                      "primary-container": "#d93537",
+                      "on-primary-fixed-variant": "#930013",
+                      "tertiary-fixed-dim": "#6fd6dd",
+                      "primary": "#b51822",
+                      "outline-variant": "#e4beba",
+                      "primary-fixed": "#ffdad7",
+                      "inverse-on-surface": "#eef1f3"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "base": "4px",
+                      "margin-mobile": "20px",
+                      "gutter-mobile": "12px",
+                      "xs": "4px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+              }
+            }
+          }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col antialiased pb-16 md:pb-0">
+<!-- Header -->
+<header class="w-full top-0 bg-surface dark:bg-on-surface border-b border-surface-variant dark:border-outline-variant flex items-center gap-4 px-margin-mobile h-12 sticky z-40">
+<button class="text-primary dark:text-primary-fixed flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<span class="text-headline-lg-mobile font-headline-lg-mobile font-bold text-primary dark:text-primary-fixed">Registrar Entrada</span>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col w-full max-w-lg mx-auto px-margin-mobile py-lg gap-lg">
+<!-- Search Section -->
+<section class="flex flex-col gap-sm">
+<h3 class="font-label-md text-label-md text-on-surface font-bold">Búsqueda rápida por registro (C.I.)</h3>
+<div class="flex gap-2">
+<div class="relative flex-1">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant pointer-events-none">search</span>
+<input class="h-12 w-full pl-10 pr-4 border border-surface-variant bg-surface-container-lowest text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md placeholder:text-secondary-fixed-dim transition-colors rounded-xl shadow-sm" placeholder="Buscar estudiante/visita..." type="text"/>
+</div>
+<button class="h-12 w-12 flex-shrink-0 bg-surface-container-lowest border border-surface-variant text-primary rounded-xl flex items-center justify-center shadow-sm hover:bg-surface-variant transition-colors active:scale-95">
+<span class="material-symbols-outlined">person_search</span>
+</button>
+</div>
+</section>
+<!-- Divider -->
+<div class="w-full h-px bg-surface-variant"></div>
+<!-- Entry Data Section -->
+<section class="flex flex-col gap-md">
+<h3 class="font-label-md text-label-md text-on-surface font-bold">Datos de Ingreso</h3>
+<!-- Full Name -->
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant pointer-events-none">person</span>
+<input class="h-12 w-full pl-10 pr-4 border border-surface-variant bg-surface-container-lowest text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md placeholder:text-secondary-fixed-dim transition-colors rounded-xl shadow-sm" placeholder="Nombre Completo" type="text"/>
+</div>
+<!-- ID Number -->
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant pointer-events-none">badge</span>
+<input class="h-12 w-full pl-10 pr-4 border border-surface-variant bg-surface-container-lowest text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md placeholder:text-secondary-fixed-dim transition-colors rounded-xl shadow-sm" placeholder="Nº de C.I. o Registro" type="text"/>
+</div>
+<!-- Access & Time Row -->
+<div class="flex gap-4">
+<!-- Access -->
+<div class="relative flex-1">
+<label class="absolute -top-2 left-3 bg-surface px-1 font-label-sm text-[12px] text-on-surface-variant z-10 leading-none">Acceso</label>
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant z-10 pointer-events-none">door_front</span>
+<select class="h-12 w-full pl-10 pr-8 border border-surface-variant bg-surface-container-lowest text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md appearance-none transition-colors rounded-xl shadow-sm relative">
+<option>Principal</option>
+<option>Secundario</option>
+<option>Estacionamiento</option>
+</select>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+<!-- Time -->
+<div class="relative w-[120px]">
+<label class="absolute -top-2 left-3 bg-surface px-1 font-label-sm text-[12px] text-on-surface-variant z-10 leading-none">Hora</label>
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant z-10 pointer-events-none">schedule</span>
+<input class="h-12 w-full pl-10 pr-4 border border-surface-variant bg-surface-container-lowest text-on-surface font-body-md text-body-md font-bold transition-colors rounded-xl shadow-sm pointer-events-none" readonly="" type="text" value="14:01"/>
+</div>
+</div>
+<!-- Visit Reason -->
+<div class="relative">
+<span class="absolute left-3 top-3 material-symbols-outlined text-on-surface-variant pointer-events-none">edit_note</span>
+<textarea class="w-full pl-10 pr-4 py-3 border border-surface-variant bg-surface-container-lowest text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md placeholder:text-secondary-fixed-dim transition-colors resize-none rounded-xl shadow-sm" placeholder="Motivo de la visita" rows="4"></textarea>
+</div>
+</section>
+<!-- Primary Action -->
+<button class="w-full h-12 mt-2 bg-primary text-on-primary font-label-md text-label-md font-bold rounded flex items-center justify-center gap-2 hover:bg-primary-container transition-colors active:scale-95 rounded-xl shadow-md">
+CONFIRMAR ENTRADA
+</button>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full h-16 flex justify-around items-center px-margin-mobile bg-surface dark:bg-on-surface border-t border-surface-variant dark:border-outline-variant z-50 md:hidden">
+<a class="flex flex-col items-center justify-center bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container rounded-xl p-2 active:scale-95 transition-transform hover:opacity-80" href="#">
+<span class="material-symbols-outlined">how_to_reg</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim p-2 active:scale-95 transition-transform hover:opacity-80" href="#">
+<span class="material-symbols-outlined">history</span>
+</a>
+</nav>
+</body></html>

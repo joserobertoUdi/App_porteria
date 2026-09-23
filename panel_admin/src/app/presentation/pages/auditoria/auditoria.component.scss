@@ -1,0 +1,171 @@
+.auditoria__encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.auditoria__titulo {
+  margin: 0 0 4px;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.auditoria__subtitulo {
+  margin: 0;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.auditoria__recargar {
+  padding: 10px 16px;
+  border: 1px solid var(--udi-rojo);
+  border-radius: 22px;
+  background: #fff;
+  color: var(--udi-rojo);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.auditoria__recargar:hover:not(:disabled) {
+  background: var(--udi-rojo);
+  color: #fff;
+}
+
+.auditoria__recargar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auditoria__busqueda {
+  width: 100%;
+  max-width: 420px;
+  padding: 11px 16px;
+  border: 1px solid #ccc;
+  border-radius: 24px;
+  background: #fff;
+  font-size: 0.92rem;
+  font-family: inherit;
+  outline: none;
+  margin-bottom: 18px;
+}
+
+.auditoria__busqueda:focus {
+  border-color: var(--udi-rojo);
+  box-shadow: 0 0 0 3px rgba(213, 0, 0, 0.12);
+}
+
+.auditoria__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.auditoria__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.auditoria__item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.auditoria__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--udi-rojo-oscuro), var(--udi-rojo));
+  color: #fff;
+  font-weight: 800;
+}
+
+.auditoria__datos {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.auditoria__nombre {
+  color: #333;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.auditoria__carnet {
+  color: #777;
+  font-size: 0.82rem;
+}
+
+.auditoria__ver {
+  color: var(--udi-rojo);
+  font-size: 0.78rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.auditoria__overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 200;
+  animation: overlay-entrar 0.18s ease-out;
+}
+
+.auditoria__dialogo {
+  width: 100%;
+  max-width: 520px;
+  max-height: 86vh;
+  overflow-y: auto;
+  padding: 24px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes overlay-entrar {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .auditoria__overlay {
+    padding: 12px;
+  }
+
+  .auditoria__dialogo {
+    max-height: 92vh;
+    padding: 18px;
+  }
+
+  .auditoria__busqueda {
+    max-width: none;
+  }
+}

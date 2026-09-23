@@ -1,0 +1,118 @@
+<section class="historial">
+  <div class="historial__encabezado">
+    <div>
+      <h2 class="historial__titulo">Historial</h2>
+      <p class="historial__subtitulo">Registro histórico de ingresos y salidas</p>
+    </div>
+    <button type="button" class="historial__recargar" (click)="recargar()" [disabled]="cargando()">
+      ↻ Recargar
+    </button>
+  </div>
+
+  <div class="segmentos" role="tablist" aria-label="Tipo de vista">
+    <button
+      type="button"
+      role="tab"
+      class="segmentos__boton"
+      [class.segmentos__boton--activo]="fuente() === FUENTES.porteria"
+      (click)="cambiarFuente(FUENTES.porteria)"
+    >
+      🚪 Portería
+    </button>
+    <button
+      type="button"
+      role="tab"
+      class="segmentos__boton"
+      [class.segmentos__boton--activo]="fuente() === FUENTES.parqueo"
+      (click)="cambiarFuente(FUENTES.parqueo)"
+    >
+      🚗 Parqueo
+    </button>
+  </div>
+
+  <div class="historial__filtros">
+    <input
+      class="historial__busqueda"
+      type="search"
+      placeholder="Buscar por nombre o carnet…"
+      aria-label="Buscar por nombre o carnet"
+      (input)="buscar($any($event.target).value)"
+    />
+
+    <div class="chips" role="group" aria-label="Filtrar por estado">
+      @for (opcion of opcionesVista; track opcion.id) {
+        <button
+          type="button"
+          class="chip"
+          [class.chip--activo]="filtro() === opcion.id"
+          (click)="cambiarFiltro(opcion.id)"
+        >
+          {{ opcion.nombre }}
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (cargando()) {
+    <udi-loading mensaje="Cargando historial…" />
+  } @else if (visibles().length === 0) {
+    <udi-empty mensaje="No se encontraron registros" />
+  } @else {
+    <ul class="historial__lista">
+      @for (registro of visibles(); track registro.idRegistro) {
+        <li class="historial__item" (click)="verDetalle(registro)">
+          <span
+            class="historial__avatar"
+            [class.historial__avatar--completado]="registro.fechaSalida != null"
+          >
+            {{ inicial(registro.nombreCompleto) }}
+          </span>
+
+          <div class="historial__datos">
+            <span class="historial__nombre">{{ registro.nombreCompleto }}</span>
+            <span class="historial__carnet">C.I. {{ registro.documentoIdentidad }}</span>
+            <span class="historial__meta">{{ fechaEntradaTexto(registro) }}</span>
+          </div>
+
+          <div class="historial__columna-derecha">
+            <span
+              class="historial__estado"
+              [class.historial__estado--activo]="registro.fechaSalida == null"
+              [class.historial__estado--completado]="registro.fechaSalida != null"
+            >
+              {{ registro.fechaSalida == null ? 'Activo' : 'Completado' }}
+            </span>
+            <span class="historial__ver">Ver detalle ›</span>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</section>
+
+@if (seleccionado(); as detalle) {
+  <div class="detalle-overlay" (click)="cerrarDetalle()">
+    <div class="detalle" role="dialog" aria-modal="true" aria-label="Detalle del ingreso">
+      <button type="button" class="detalle__cerrar" (click)="cerrarDetalle()" aria-label="Cerrar">
+        ✕
+      </button>
+
+      <div class="detalle__cabecera">
+        <span class="detalle__avatar">{{ inicial(detalle.nombreCompleto) }}</span>
+        <div>
+          <h3 class="detalle__titulo">{{ detalle.nombreCompleto }}</h3>
+          <p class="detalle__carnet">C.I. {{ detalle.documentoIdentidad }}</p>
+        </div>
+      </div>
+
+      <dl class="detalle__renglones">
+        @for (campo of camposDetalle(); track campo.etiqueta) {
+          <div class="detalle__renglon">
+            <dt class="detalle__etiqueta">{{ campo.etiqueta }}</dt>
+            <dd class="detalle__valor">{{ campo.valor }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+  </div>
+}

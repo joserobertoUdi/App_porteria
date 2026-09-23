@@ -1,0 +1,101 @@
+<section class="usuarios">
+  <div class="usuarios__encabezado">
+    <div>
+      <h2 class="usuarios__titulo">Usuarios del sistema</h2>
+      <p class="usuarios__subtitulo">Cuentas con acceso al sistema (administrador y porteros)</p>
+    </div>
+    <div class="usuarios__acciones">
+      <button
+        type="button"
+        class="usuarios__recargar"
+        (click)="recargar()"
+        [disabled]="cargando()"
+      >
+        ↻ Recargar
+      </button>
+      <button type="button" class="usuarios__nuevo" (click)="abrirCrear()">＋ Nuevo usuario</button>
+    </div>
+  </div>
+
+  <input
+    class="usuarios__busqueda"
+    type="search"
+    placeholder="Buscar por nombre o carnet…"
+    aria-label="Buscar usuarios"
+    (input)="buscar($any($event.target).value)"
+  />
+
+  @if (cargando()) {
+    <udi-loading mensaje="Cargando usuarios…" />
+  } @else if (visibles().length === 0) {
+    <udi-empty mensaje="No se encontraron usuarios" />
+  } @else {
+    <ul class="usuarios__lista">
+      @for (usuario of visibles(); track usuario.id) {
+        <li class="usuarios__item">
+          <span
+            class="usuarios__avatar"
+            [class.usuarios__avatar--inactivo]="!usuario.estado"
+          >
+            {{ inicial(usuario.nombreCompleto) }}
+          </span>
+
+          <div class="usuarios__datos">
+            <span class="usuarios__nombre">{{ usuario.nombreCompleto }}</span>
+            <span class="usuarios__carnet">C.I. {{ usuario.documentoIdentidad }}</span>
+            <span class="usuarios__roles">{{ usuario.rol }} · {{ usuario.tipoUsuario }}</span>
+          </div>
+
+          <div class="usuarios__columna">
+            <span
+              class="usuarios__estado"
+              [class.usuarios__estado--activo]="usuario.estado"
+              [class.usuarios__estado--inactivo]="!usuario.estado"
+            >
+              {{ usuario.estado ? 'Activo' : 'Inactivo' }}
+            </span>
+            <div class="usuarios__opciones">
+              <button type="button" class="usuarios__opcion" (click)="abrirEditar(usuario)">
+                Editar
+              </button>
+              <button type="button" class="usuarios__opcion" (click)="abrirPassword(usuario)">
+                Contraseña
+              </button>
+            </div>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</section>
+
+@if (dialogo(); as tipo) {
+  <div class="dialogo-overlay" (click)="cerrarDialogo()">
+    <div class="dialogo" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+      <button
+        type="button"
+        class="dialogo__cerrar"
+        (click)="cerrarDialogo()"
+        aria-label="Cerrar"
+      >
+        ✕
+      </button>
+
+      @if (tipo === 'password') {
+        <app-usuario-password
+          [usuario]="seleccionado()!"
+          (enviado)="cerrarDialogo()"
+        />
+      } @else {
+        <h3 class="dialogo__titulo">
+          {{ tipo === 'crear' ? 'Crear usuario' : 'Editar usuario' }}
+        </h3>
+        <app-usuario-form
+          [modo]="modoFormulario()"
+          [usuario]="seleccionado()"
+          (enviado)="cerrarDialogo()"
+        />
+      }
+    </div>
+  </div>
+}

@@ -1,0 +1,122 @@
+<div class="ag">
+  <header class="ag__cabecera">
+    <button type="button" class="ag__atras" (click)="volver.emit()" aria-label="Volver">
+      ←
+    </button>
+    <span class="ag__avatar">{{ inicial(guardia().nombreCompleto) }}</span>
+    <div class="ag__datos">
+      <h3 class="ag__titulo">{{ guardia().nombreCompleto }}</h3>
+      <p class="ag__carnet">
+        C.I. {{ guardia().documentoIdentidad }} · {{ rolVisible(guardia().rol) }}
+      </p>
+    </div>
+  </header>
+
+  <div class="ag__periodo">
+    <span class="ag__periodo-titulo">
+      {{ dia() === null ? 'Todos los días' : 'Día: ' + dia() }}
+    </span>
+    <input
+      type="date"
+      class="ag__fecha"
+      [value]="dia() ?? ''"
+      (change)="cambiarDia($event)"
+      aria-label="Filtrar por día"
+    />
+    <button
+      type="button"
+      class="ag__boton"
+      (click)="limpiarDia()"
+      [disabled]="dia() === null"
+    >
+      Limpiar
+    </button>
+    <button
+      type="button"
+      class="ag__boton ag__boton--recargar"
+      (click)="cargar()"
+      [disabled]="cargando()"
+    >
+      ↻ Recargar
+    </button>
+  </div>
+
+  @if (cargando()) {
+    <udi-loading mensaje="Cargando aprobaciones…" />
+  } @else if (error(); as mensaje) {
+    <udi-empty [mensaje]="mensaje" />
+  } @else if (datos(); as d) {
+    <div class="ag__resumen">
+      <div class="ag__chip ag__chip--completadas">
+        <span class="ag__chip-valor">{{ d.totalCompletadas }}</span>
+        <span class="ag__chip-etiqueta">Completadas</span>
+      </div>
+      <div class="ag__chip ag__chip--pendientes">
+        <span class="ag__chip-valor">{{ d.totalPendientes }}</span>
+        <span class="ag__chip-etiqueta">Pendientes</span>
+      </div>
+    </div>
+
+    @if (d.porteria.length > 0) {
+      <h4 class="ag__seccion">
+        🚪 PORTERÍA <span class="ag__contador">{{ d.porteria.length }}</span>
+      </h4>
+      <ul class="ag__lista">
+        @for (a of d.porteria; track a.idRegistro) {
+          <li class="ag__item">
+            <div class="ag__item-titulo">
+              <span
+                class="ag__estado"
+                [class.ag__estado--pendiente]="!a.estaCompletada"
+                [class.ag__estado--completada]="a.estaCompletada"
+              >
+                {{ a.estaCompletada ? 'Completada' : 'Pendiente' }}
+              </span>
+              <span class="ag__item-nombre">{{ a.visitanteNombre }}</span>
+            </div>
+            <span class="ag__detalle">C.I. {{ a.visitanteDocumento }}</span>
+            <span class="ag__detalle">Entrada: {{ fecha(a.fechaEntrada) }}</span>
+            @if (a.fechaSalida) {
+              <span class="ag__detalle">Salida: {{ fecha(a.fechaSalida) }}</span>
+            }
+            <span class="ag__detalle">{{ detallePorteria(a) }}</span>
+          </li>
+        }
+      </ul>
+    }
+
+    @if (d.parqueo.length > 0) {
+      <h4 class="ag__seccion">
+        🚗 PARQUEO <span class="ag__contador">{{ d.parqueo.length }}</span>
+      </h4>
+      <ul class="ag__lista">
+        @for (a of d.parqueo; track a.idRegistro) {
+          <li class="ag__item">
+            <div class="ag__item-titulo">
+              <span
+                class="ag__estado"
+                [class.ag__estado--pendiente]="!a.estaCompletada"
+                [class.ag__estado--completada]="a.estaCompletada"
+              >
+                {{ a.estaCompletada ? 'Completada' : 'Pendiente' }}
+              </span>
+              <span class="ag__item-nombre">
+                {{ a.matricula }} · {{ a.visitanteNombre }}
+              </span>
+            </div>
+            <span class="ag__detalle">C.I. {{ a.visitanteDocumento }}</span>
+            <span class="ag__detalle">Ingreso: {{ fecha(a.fechaIngreso) }}</span>
+            @if (a.fechaSalida) {
+              <span class="ag__detalle">Salida: {{ fecha(a.fechaSalida) }}</span>
+            }
+            <span class="ag__detalle">{{ detalleParqueo(a) }}</span>
+          </li>
+        }
+      </ul>
+    }
+
+    @if (d.porteria.length === 0 && d.parqueo.length === 0) {
+      <udi-empty mensaje="Sin aprobaciones en el período" />
+    }
+  }
+</div>

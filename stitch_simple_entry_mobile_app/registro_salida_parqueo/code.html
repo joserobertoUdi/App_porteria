@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registro de Salida de Parqueo</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f7fafc",
+                        "on-primary-fixed": "#410004",
+                        "outline-variant": "#e4beba",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#ffb3ad",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container": "#ebeef0",
+                        "on-secondary-container": "#5e6473",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#dde2f3",
+                        "secondary": "#585e6c",
+                        "background": "#f7fafc",
+                        "primary-fixed-dim": "#ffb3ad",
+                        "outline": "#8f6f6d",
+                        "tertiary-fixed": "#8cf2fa",
+                        "on-secondary-fixed": "#161c27",
+                        "on-primary-fixed-variant": "#930013",
+                        "tertiary-fixed-dim": "#6fd6dd",
+                        "tertiary": "#00666c",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#414754",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#dde2f3",
+                        "primary": "#b51822",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f1f4f6",
+                        "on-tertiary-container": "#f4ffff",
+                        "surface-tint": "#b91c24",
+                        "inverse-on-surface": "#eef1f3",
+                        "secondary-fixed-dim": "#c1c6d7",
+                        "surface": "#f7fafc",
+                        "on-background": "#181c1e",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface-variant": "#5b403e",
+                        "on-surface": "#181c1e",
+                        "surface-dim": "#d7dadc",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed": "#ffdad7",
+                        "primary-container": "#d93537"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "margin-mobile": "20px",
+                        "gutter-mobile": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col pb-20">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-on-surface border-b border-surface-variant dark:border-outline-variant flex items-center justify-between px-margin-mobile h-14 w-full sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 transition-colors duration-200 hover:bg-surface-container-low dark:hover:bg-on-secondary-fixed-variant rounded-full">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+</button>
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile font-bold text-primary dark:text-primary-fixed">Registrar Salida Parqueo</h1>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">app_registration</span>
+</div>
+</header>
+<main class="flex-1 px-margin-mobile py-lg max-w-md mx-auto w-full space-y-lg">
+<!-- Búsqueda rápida Section -->
+<section class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant">Búsqueda rápida por placa</label>
+<div class="flex gap-2">
+<div class="relative flex-1 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary">search</span>
+<input class="w-full pl-10 pr-4 h-12 bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-0 rounded-lg text-body-md transition-all" placeholder="Buscar placa..." type="text"/>
+</div>
+<button class="w-12 h-12 flex items-center justify-center bg-surface-container-lowest border border-outline-variant text-primary rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">person_search</span>
+</button>
+</div>
+</section>
+<!-- Main Form Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md space-y-md">
+<div class="flex items-center gap-2 pb-sm border-b border-outline-variant">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+<h2 class="text-headline-md font-headline-md text-on-surface">Datos del Vehículo</h2>
+</div>
+<div class="grid grid-cols-1 gap-md">
+<!-- Plate Number -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Número de Placa</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">pin</span>
+<input class="w-full pl-10 h-12 bg-white border border-outline-variant focus:border-primary focus:ring-0 rounded-lg text-body-md" placeholder="ABC-1234" type="text"/>
+</div>
+</div>
+<!-- Driver Name -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Nombre del Conductor</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">person</span>
+<input class="w-full pl-10 h-12 bg-white border border-outline-variant focus:border-primary focus:ring-0 rounded-lg text-body-md" placeholder="Nombre Completo" type="text"/>
+</div>
+</div>
+<!-- Area & Time Row -->
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Área/Zona</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">local_parking</span>
+<select class="w-full pl-10 pr-8 h-12 bg-white border border-outline-variant focus:border-primary focus:ring-0 rounded-lg text-body-md appearance-none">
+<option>Zona A</option>
+<option>Zona B</option>
+<option>Visitantes</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Hora de Salida</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">schedule</span>
+<input class="w-full pl-10 h-12 bg-white border border-outline-variant focus:border-primary focus:ring-0 rounded-lg text-body-md" type="time" value="14:01"/>
+</div>
+</div>
+</div>
+<!-- Observations -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Observaciones de Salida</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-4 text-primary">edit_note</span>
+<textarea class="w-full pl-10 pt-3 bg-white border border-outline-variant focus:border-primary focus:ring-0 rounded-lg text-body-md" placeholder="Estado del vehículo, objetos adicionales, etc." rows="3"></textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- Confirm Button -->
+<button class="w-full h-14 bg-primary text-on-primary font-headline-md rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-lg shadow-primary/20">
+<span>CONFIRMAR SALIDA</span>
+<span class="material-symbols-outlined">logout</span>
+</button>
+<!-- Decorative Illustration / Context Image -->
+<div class="rounded-xl overflow-hidden border border-outline-variant">
+<img class="w-full h-40 object-cover opacity-80 grayscale-[30%]" data-alt="A clean, cinematic photograph of a high-tech parking garage exit with sharp white lighting and deep shadows. The scene is dominated by a minimalist white aesthetic with bold red security gates and signage. A sleek, modern vehicle is positioned at the gate, emphasizing organized efficiency and security. The atmosphere is professional, clinical, and authoritative, matching the red and white brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKA3c1CnXFQ1MkBWR2o7NUs5WMVFRXyj_TnQ71anF0nhD8j1TXEoBucdcs3MBNVBJ--IAb8Nbv2iPN6_G0d_vcc6VJ6MPIaLG6-yVHIudjvm2bqyhrMJLYtZZx0JPBcyujUXJO1EoPQc7WI-4usnOzzXLbgwdqqCgNP7TNvxZGdbXqk6PaXVndo_vNdCDz4DWkpPzCxjgrWT0hMlwcOX7NxCBKw_1Bto523aLHx7I7S44TP-gBioOUxQ"/>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full h-16 bg-surface dark:bg-on-surface border-t border-surface-variant dark:border-outline-variant flex justify-around items-center px-margin-mobile z-50">
+<!-- Active Tab: Registration (mapped from 'how_to_reg') -->
+<a class="flex flex-col items-center justify-center bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container rounded-xl p-2 min-w-[72px] transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">how_to_reg</span>
+<span class="text-label-sm font-label-sm">Registro</span>
+</a>
+<!-- Inactive Tab: History (mapped from 'history') -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim p-2 min-w-[72px] hover:opacity-80 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-label-sm font-label-sm">Historial</span>
+</a>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('input, select, textarea').forEach(element => {
+            element.addEventListener('focus', () => {
+                element.closest('.relative').querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 1";
+            });
+            element.addEventListener('blur', () => {
+                element.closest('.relative').querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 0";
+            });
+        });
+
+        // Set current time for the exit input
+        const timeInput = document.querySelector('input[type="time"]');
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        timeInput.value = `${hours}:${minutes}`;
+    </script>
+</body></html>

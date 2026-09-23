@@ -1,0 +1,49 @@
+<div class="login">
+  <form
+    class="login__carta"
+    [formGroup]="formulario"
+    (ngSubmit)="iniciarSesion()"
+    novalidate
+  >
+    <div class="login__marca">
+      <img src="assets/branding/logo-udi-color.png" alt="Universidad para el Desarrollo y la Innovación" />
+    </div>
+    <h1 class="login__titulo">Panel de Administración</h1>
+    <p class="login__subtitulo">Control de Acceso y Parqueo</p>
+
+    <label class="login__campo">
+      <span class="login__etiqueta">Usuario (carnet)</span>
+      <input
+        class="login__input"
+        formControlName="documento"
+        type="text"
+        autocomplete="username"
+        placeholder="Documento de identidad"
+      />
+    </label>
+
+    <label class="login__campo">
+      <span class="login__etiqueta">Contraseña</span>
+      <input
+        class="login__input"
+        formControlName="password"
+        type="password"
+        autocomplete="current-password"
+        placeholder="••••••••"
+      />
+    </label>
+
+    @if (error(); as mensaje) {
+      <p class="login__error" role="alert">{{ mensaje }}</p>
+    }
+
+    <button class="login__boton" type="submit" [disabled]="cargando() || formulario.invalid">
+      @if (cargando()) {
+        <span class="login__spinner"></span>
+        Ingresando…
+      } @else {
+        Ingresar
+      }
+    </button>
+  </form>
+</div>
